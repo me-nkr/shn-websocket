@@ -19,8 +19,6 @@ app.get('/style.css', (req, res) => {
     res.sendFile(__dirname + '/public/style.css')
 })
 
-io.on('connection', (socket) => {
-    addHandlers(io, socket);
-})
+io.on('connection', addHandlers.bind(null, io))
 
-app.listen(3000);
+server.listen(3000);
