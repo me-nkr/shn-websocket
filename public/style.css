@@ -4,14 +4,21 @@
 .form-control{
     width: 11.1% !important;
     height: 70px;
+    font-size: 2rem !important;
 }
 .form-control:nth-child(3n){
     border-right: solid 2px;
 }
-.form-control:nth-child(3n){
-    border-right: solid 2px;
-}
+
 button{
-    margin: -20px -50px; 
+    margin: 12em 0% 0 50%; 
     position:relative;
+    font-size: 2rem !important;
+    padding: 3% !important;
+}
+.bb{
+    border-bottom: 1px solid #000;
+}
+input{
+    font-size: 2rem;
 }
