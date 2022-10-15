@@ -1,0 +1,17 @@
+.sudoku-p1 {
+	top: 100px;
+}
+.form-control{
+    width: 11.1% !important;
+    height: 70px;
+}
+.form-control:nth-child(3n){
+    border-right: solid 2px;
+}
+.form-control:nth-child(3n){
+    border-right: solid 2px;
+}
+button{
+    margin: -20px -50px; 
+    position:relative;
+}
