@@ -1,33 +1,46 @@
 class Handler {
-    constructor(io, socket) {
+    constructor(io, sudoku, socket) {
         this.io = io;
+        this.sudoku = sudoku;
         this.socket = socket;
     }
 
     handle = (event, handler) => {
-        this.socket.on(event, handler.bind(null, this.io, this.socket))
+        this.socket.on(event, handler.bind(null, this.io, this.sudoku, this.socket))
     }
 }
 
-const question = '000260701680070090190004500820100040004602900050003028009300074040050036703018000';
-const answer = '435269781682571493197834562826195347374682915951743628519326874248957136763418259';
-const state = '435269781682571493197834562826195347374682915951743628519326874248957136763418259';
 
-const updateHandler = (io, socket, data) => {
-    console.log(data)
+const updateHandler = (io, sudoku, socket, data) => {
+    const index = parseInt(data.cell.replace('cell', ''));
+
+    console.log(sudoku.state)
+
+    const sudokuArray = sudoku.state.split('');
+    sudokuArray[index] = data.newValue === '' ? '0' : data.newValue;
+    sudoku.state = sudokuArray.join('');
+
+    console.log(sudoku.state)
+
     io.emit('change', data)
 }
 
-const submitHandler = (io, socket, data) => {
-    socket.emit('msg', 'Hello Submit')
+const submitHandler = (io, sudoku, socket, data) => {
+    console.log('State ' + sudoku.state)
+    console.log('Answer ' + sudoku.answer)
+    if(sudoku.state === sudoku.answer) io.emit('pass');
+    else io.emit('fail');
 }
 
-const sendSudoku = (io, socket) => {
-    socket.emit('sudoku' )
+const sendSudoku = (io, sudoku, socket) => {
+    socket.emit('sudoku', {
+        question: sudoku.question,
+        state: sudoku.state
+    })
 }
 
-module.exports = (io, socket) => {
-    const { handle }  = new Handler(io, socket);
+module.exports = (io, sudoku, socket) => {
+    const { handle }  = new Handler(io, sudoku, socket);
 
     handle('change', updateHandler);
     handle('submit', submitHandler);

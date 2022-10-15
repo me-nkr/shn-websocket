@@ -40,12 +40,12 @@ const populate = (data) => {
     const puzzle = data.question;
     const currentState = data.state;
 
-    for (let i = 0; i > puzzle.length; i++) {
+    for (let i = 0; i < puzzle.length; i++) {
         if (puzzle[i] !== '0') document.querySelector('#cell' + i).disabled = true;
     }
 
-    for (let i = 0; i > currentState.length; i++) {
-        document.querySelector('#cell' + i) = currentState[i];
+    for (let i = 0; i < currentState.length; i++) {
+        if (currentState[i] !== '0') document.querySelector('#cell' + i).value = currentState[i];
     }
 }
 
