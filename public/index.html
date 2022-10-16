@@ -9,10 +9,10 @@
         <link rel="stylesheet" href="./style.css">
     </head>
 </head>
-<body class="container">
+<body class="container-fluid">
     <section id="sudoko-body" class="row ">
         <div class="col-md-8 ">
-            <div id="sudoku" class="input-group sudoku-p1">
+            <div id="sudoku" class=" container input-group sudoku-p1">
                 <input type="text" name="" id="cell0" class="form-control"> 
                 <input type="text" name="" id="cell1"  class="form-control">
                 <input type="text" name="" id="cell2" class="form-control ">
@@ -98,8 +98,9 @@
                 
               </div>
         </div>
-        <div class="col-md-4">
-            <div id="message"></div>
+        <div class="col-md-4 ">
+            <div id="message" class="justify-content-start "></div>
+            
             <button id="submit" class="btn btn-primary btn-lg" type="submit">Submit</button>
         </div>
     </section>
