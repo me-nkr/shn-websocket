@@ -26,9 +26,13 @@ const updateHandler = (io, sudoku, socket, data) => {
 }
 
 const submitHandler = (io, sudoku, socket, data) => {
-    console.log('State ' + sudoku.state)
-    console.log('Answer ' + sudoku.answer)
-    if(sudoku.state === sudoku.answer) io.emit('pass');
+    if(sudoku.state === sudoku.answer) {
+        sudoku.state = sudoku.question;
+        io.emit('pass', {
+            question: sudoku.question,
+            state: sudoku.state
+        });
+    }
     else io.emit('fail');
 }
 
