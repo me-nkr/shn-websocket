@@ -28,4 +28,4 @@ sudokuData.state = sudokuData.question;
 
 io.on('connection', addHandlers.bind(null, io, sudokuData))
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
